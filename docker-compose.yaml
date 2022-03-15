@@ -19,6 +19,7 @@ services:
     - 8081:8081
     depends_on:
       - eureka-service
+      - authentication-service
   gateway-service:
     container_name: gateway-service
     image: gateway-service
@@ -26,6 +27,7 @@ services:
     - 1001:1001
     depends_on:
       - eureka-service
+      - authentication-service
   packaging-delivery-service:
     container_name: packaging-delivery-service
     image: packaging-delivery
@@ -33,6 +35,7 @@ services:
     - 8083:8083
     depends_on:
       - eureka-service
+      - authentication-service
   payment-service:
     container_name: payment-service
     image: payment-service
@@ -40,6 +43,7 @@ services:
     - 8086:8086
     depends_on:
       - eureka-service
+      - authentication-service
   portal-frontend:
     container_name: portal-frontend
     image: portal-frontend
