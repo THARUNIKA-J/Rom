@@ -1,0 +1,49 @@
+version: "3.9"
+services:
+  eureka-service:
+    container_name: eureka-service
+    image: eureka-service
+    ports:
+      - 1000:1000
+  authentication-service:
+    container_name: authentication-service
+    image: authentication-service
+    ports:
+    - 2000:2000
+    depends_on:
+      - eureka-service
+  component-processing-service:
+    container_name: component-processing-service
+    image: component-processing
+    ports:
+    - 8081:8081
+    depends_on:
+      - eureka-service
+  gateway-service:
+    container_name: gateway-service
+    image: gateway-service
+    ports:
+    - 1001:1001
+    depends_on:
+      - eureka-service
+  packaging-delivery-service:
+    container_name: packaging-delivery-service
+    image: packaging-delivery
+    ports:
+    - 8083:8083
+    depends_on:
+      - eureka-service
+  payment-service:
+    container_name: payment-service
+    image: payment-service
+    ports:
+    - 8086:8086
+    depends_on:
+      - eureka-service
+  portal-frontend:
+    container_name: portal-frontend
+    image: portal-frontend
+    ports:
+    - 3000:3000
+    depends_on:
+      - eureka-service
